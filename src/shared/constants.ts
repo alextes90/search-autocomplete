@@ -1,0 +1,1 @@
+export const LOCAL_STORAGE_KEY = 'SEARCH_AUTO_AT_23';
