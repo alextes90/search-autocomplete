@@ -16,7 +16,7 @@ export const AutocompleteItem = ({
   setInMemoryResluts,
 }: Props) => {
   const onMouseDown = () => {
-    const newInMemoryDb = { ...inMemoryResults, [`${title}`]: true };
+    const newInMemoryDb = { ...inMemoryResults, [title]: true };
     window.localStorage.setItem(
       LOCAL_STORAGE_KEY,
       JSON.stringify(newInMemoryDb)

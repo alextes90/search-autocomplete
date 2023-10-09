@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { MAX_AUTOCOMPLETE_RESULT } from '../shared/constants';
 import { AutocompleteItemType } from '../shared/types';
 import { getFilteredResult } from '../shared/utils';
 
@@ -24,7 +25,10 @@ export const SearchInput = ({
       setIsInputFocused(true);
     }
     setInputValue(e.target.value);
-    const autocompleteResult = getFilteredResult(e.target.value).slice(0, 9);
+    const autocompleteResult = getFilteredResult(e.target.value).slice(
+      0,
+      MAX_AUTOCOMPLETE_RESULT
+    );
     setAutocompleteList(autocompleteResult);
   };
 
@@ -43,6 +47,7 @@ export const SearchInput = ({
   return (
     <div className="relative">
       <input
+        aria-label="search-input"
         className={`shadow-lg border border-slate-200 w-[300px] rounded-lg p-2 pl-8 focus:border-slate-400 focus:outline-none ${inputStyle}`}
         autoFocus
         value={inputValue}
@@ -66,6 +71,7 @@ export const SearchInput = ({
         <img
           onClick={() => {
             setInputValue('');
+            setAutocompleteList([]);
           }}
           className="absolute top-3 right-2 hover:cursor-pointer"
           src="./close.svg"

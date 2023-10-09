@@ -1,5 +1,8 @@
 import { useState, useMemo } from 'react';
-import { LOCAL_STORAGE_KEY } from '../shared/constants';
+import {
+  LOCAL_STORAGE_KEY,
+  MAX_AUTOCOMPLETE_RESULT,
+} from '../shared/constants';
 import { AutocompleteItemType, InMemoryDb } from '../shared/types';
 import { getFilteredResult } from '../shared/utils';
 import { AutocompleteItem } from './autocomplete-item';
@@ -25,7 +28,7 @@ export const Search = () => {
     const startOperation = Date.now();
     const searchResultList = getFilteredResult(searchResult);
     setIsInputFocused(false);
-    setAutocompleteList(searchResultList.slice(0, 9));
+    setAutocompleteList(searchResultList.slice(0, MAX_AUTOCOMPLETE_RESULT));
     const endOperation = Date.now();
     const timeSpent = endOperation - startOperation;
     return { searchResultList, timeSpent };
@@ -46,7 +49,7 @@ export const Search = () => {
         {isInputFocused && (
           <div className="shadow-lg absolute z-10 top-10 border border-slate-400 w-[300px] border-t-0 rounded-b-lg bg-white">
             {autocompleteList.length > 0 ? (
-              <ul>
+              <ul role="rowgroup">
                 {autocompleteList.map((el) => (
                   <li key={el.id}>
                     <AutocompleteItem

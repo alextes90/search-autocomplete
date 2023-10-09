@@ -1,1 +1,3 @@
 export const LOCAL_STORAGE_KEY = 'SEARCH_AUTO_AT_23';
+
+export const MAX_AUTOCOMPLETE_RESULT = 10;
