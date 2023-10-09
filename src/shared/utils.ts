@@ -6,6 +6,6 @@ export const getFilteredResult = (input: string) => {
   const filteredResults = SEARCH_AUTOCOMPLETE_DB.filter((el) =>
     el.title.toLocaleLowerCase().startsWith(input.toLocaleLowerCase())
   );
-
+  console.log(filteredResults.map((el) => el.title));
   return filteredResults;
 };
